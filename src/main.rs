@@ -1,25 +1,15 @@
 use std::fs::read_to_string;
 
-use clap::Parser;
-
-#[derive(Parser)]
-#[command(version, about, long_about = None)]
-struct Cli {
-    pattern: String,
-    filename: String,
-
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
-}
+mod cli;
 
 fn main() {
-    let cli = Cli::parse();
+    let args = cli::parse();
 
-    println!("pattern: {}", cli.pattern);
-    println!("filename: {}", cli.filename);
+    println!("pattern: {}", args.pattern);
+    println!("filename: {}", args.filename);
 
-    for line in read_to_string(cli.filename).unwrap().lines() {
-        if line.contains(&cli.pattern) {
+    for line in read_to_string(args.filename).unwrap().lines() {
+        if line.contains(&args.pattern) {
             println!("{line}");
         }
     }
