@@ -11,7 +11,5 @@ pub struct Cli {
 }
 
 pub fn parse() -> Cli {
-    let cli = Cli::parse();
-
-    cli
+    Cli::parse()
 }
