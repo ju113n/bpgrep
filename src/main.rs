@@ -1,5 +1,6 @@
 mod cli;
 mod file;
+mod search;
 
 fn main() {
     let args = cli::parse();
@@ -14,4 +15,6 @@ fn main() {
         .map(|r| r.unwrap())
         .filter(|line| line.contains(&args.pattern))
         .for_each(|line| println!("--> {line}"));
+
+    search::boyer_moore(&String::from("toto"), &args.filename);
 }
